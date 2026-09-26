@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
+import AIAssistant from "./pages/AIAssistant";
 
 function App() {
   
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/ai-assist" element={<AIAssistant />} />
           </Routes>
         </main>
         <Footer />
