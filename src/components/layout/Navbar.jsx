@@ -27,7 +27,7 @@ function Navbar() {
               { label: "AI Assistant", path: "/ai-assist" },
               { label: "Missions", path: "/missions" },
               { label: "NGO Directory", path: "/ngos" },
-              { label: 'Contact', path: '/contact' },
+              { label: "Contact", path: "/contact" },
             ].map((item) => (
               <Link
                 key={item.path}
