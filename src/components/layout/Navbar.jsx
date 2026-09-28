@@ -27,7 +27,6 @@ function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div
               className="p-2 rounded-xl transition-all duration-200 group-hover:scale-105"
@@ -52,7 +51,6 @@ function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-0.5">
             {navLinks.map((item) => (
               <Link
@@ -90,7 +88,6 @@ function Navbar() {
             ))}
           </div>
 
-          {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-2.5">
             <Link
               to="/login"
@@ -111,7 +108,7 @@ function Navbar() {
               Login
             </Link>
             <Link
-              to="/ai-assist"
+              to="/login?mode=signup"
               className="text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-150 hover:scale-105"
               style={{
                 background: "linear-gradient(135deg, #22c55e, #10b981)",
@@ -119,11 +116,10 @@ function Navbar() {
                 boxShadow: "0 4px 15px rgba(34,197,94,0.3)",
               }}
             >
-              Get Started 🚀
+              Get Started
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden text-white w-9 h-9 rounded-lg flex items-center justify-center transition-all"
@@ -137,7 +133,6 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <div
           className="md:hidden px-4 py-4 space-y-1"
@@ -160,9 +155,7 @@ function Navbar() {
                       color: "#ffffff",
                       border: "1px solid rgba(255,255,255,0.2)",
                     }
-                  : {
-                      color: "rgba(186,230,253,0.8)",
-                    }
+                  : { color: "rgba(186,230,253,0.8)" }
               }
             >
               {item.label}
@@ -181,7 +174,7 @@ function Navbar() {
               Login
             </Link>
             <Link
-              to="/ai-assist"
+              to="/login?mode=signup"
               onClick={() => setMenuOpen(false)}
               className="flex-1 text-center text-white py-2.5 rounded-xl text-sm font-bold"
               style={{
@@ -189,7 +182,7 @@ function Navbar() {
                 boxShadow: "0 4px 15px rgba(34,197,94,0.3)",
               }}
             >
-              Get Started 🚀
+              Get Started
             </Link>
           </div>
         </div>
@@ -199,3 +192,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

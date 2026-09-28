@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const roles = [
   {
@@ -41,7 +41,10 @@ const roles = [
 ];
 
 function Login() {
-  const [mode, setMode] = useState("login");
+  const [params] = useSearchParams();
+  const [mode, setMode] = useState(
+    params.get("mode") === "signup" ? "signup" : "login",
+  );
   const [role, setRole] = useState("citizen");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

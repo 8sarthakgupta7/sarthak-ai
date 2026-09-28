@@ -14,6 +14,7 @@ import SDG8 from "./pages/sdg8/SDG8";
 import Breadcrumb from "./components/common/Breadcrumb";
 import SDG11 from "./pages/sdg11/SDG11";
 import Login from "./pages/Login";
+import Missions from "./pages/Missions";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -44,6 +45,7 @@ function App() {
             <Route path="/sdg8" element={<SDG8 />} />
             <Route path="/sdg11" element={<SDG11 />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/missions" element={<Missions />} />
           </Routes>
         </main>
         <Footer />

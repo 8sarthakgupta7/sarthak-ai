@@ -1,16 +1,70 @@
 import { Link } from "react-router-dom";
 
 const sdgModules = [
-  { emoji: '🔴', title: 'No Poverty', desc: 'Connect to welfare schemes, NGOs & philanthropists', path: '/sdg1', color: 'bg-red-50 border-red-200 hover:border-red-400' },
-  { emoji: '🟡', title: 'Zero Hunger', desc: 'Support farmers, food surplus & agricultural resources', path: '/sdg2', color: 'bg-yellow-50 border-yellow-200 hover:border-yellow-400' },
-  { emoji: '🔵', title: 'Good Health', desc: 'Find affordable healthcare, doctors & health NGOs', path: '/sdg3', color: 'bg-blue-50 border-blue-200 hover:border-blue-400' },
-  { emoji: '🟣', title: 'Quality Education', desc: 'Discover scholarships, free coaching & skill roadmaps', path: '/sdg4', color: 'bg-purple-50 border-purple-200 hover:border-purple-400' },
-  { emoji: '🩷', title: 'Gender Equality', desc: 'Awareness, support pathways & complaint escalation', path: '/sdg5', color: 'bg-pink-50 border-pink-200 hover:border-pink-400' },
-  { emoji: '🟢', title: 'Decent Work', desc: 'Find jobs, internships, skills & entrepreneurship support', path: '/sdg8', color: 'bg-green-50 border-green-200 hover:border-green-400' },
-  { emoji: '🟠', title: 'Sustainable Cities', desc: 'Report civic issues & track community resolutions', path: '/sdg11', color: 'bg-orange-50 border-orange-200 hover:border-orange-400' },
-  { emoji: '🤖', title: 'AI Assistant', desc: 'Describe your problem and let AI find the right support for you', path: '/ai-assist', color: 'bg-indigo-50 border-indigo-200 hover:border-indigo-400' },
-  { emoji: '📬', title: 'Contact Us', desc: 'Reach out to us for support, partnerships or any queries', path: '/contact', color: 'bg-teal-50 border-teal-200 hover:border-teal-400' },
-]
+  {
+    emoji: "🔴",
+    title: "No Poverty",
+    desc: "Connect to welfare schemes, NGOs & philanthropists",
+    path: "/sdg1",
+    color: "bg-red-50 border-red-200 hover:border-red-400",
+  },
+  {
+    emoji: "🟡",
+    title: "Zero Hunger",
+    desc: "Support farmers, food surplus & agricultural resources",
+    path: "/sdg2",
+    color: "bg-yellow-50 border-yellow-200 hover:border-yellow-400",
+  },
+  {
+    emoji: "🔵",
+    title: "Good Health",
+    desc: "Find affordable healthcare, doctors & health NGOs",
+    path: "/sdg3",
+    color: "bg-blue-50 border-blue-200 hover:border-blue-400",
+  },
+  {
+    emoji: "🟣",
+    title: "Quality Education",
+    desc: "Discover scholarships, free coaching & skill roadmaps",
+    path: "/sdg4",
+    color: "bg-purple-50 border-purple-200 hover:border-purple-400",
+  },
+  {
+    emoji: "🩷",
+    title: "Gender Equality",
+    desc: "Awareness, support pathways & complaint escalation",
+    path: "/sdg5",
+    color: "bg-pink-50 border-pink-200 hover:border-pink-400",
+  },
+  {
+    emoji: "🟢",
+    title: "Decent Work",
+    desc: "Find jobs, internships, skills & entrepreneurship support",
+    path: "/sdg8",
+    color: "bg-green-50 border-green-200 hover:border-green-400",
+  },
+  {
+    emoji: "🟠",
+    title: "Sustainable Cities",
+    desc: "Report civic issues & track community resolutions",
+    path: "/sdg11",
+    color: "bg-orange-50 border-orange-200 hover:border-orange-400",
+  },
+  {
+    emoji: "🤖",
+    title: "AI Assistant",
+    desc: "Describe your problem and let AI find the right support for you",
+    path: "/ai-assist",
+    color: "bg-indigo-50 border-indigo-200 hover:border-indigo-400",
+  },
+  {
+    emoji: "📬",
+    title: "Contact Us",
+    desc: "Reach out to us for support, partnerships or any queries",
+    path: "/contact",
+    color: "bg-teal-50 border-teal-200 hover:border-teal-400",
+  },
+];
 
 const stats = [
   { number: "7", label: "SDGs Covered" },
@@ -160,9 +214,12 @@ function Home() {
             Join thousands of citizens, NGOs, and volunteers building a better
             India — one SDG at a time.
           </p>
-          <button className="bg-green-500 hover:bg-green-400 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-colors shadow-lg">
-            Get Started Free 🚀
-          </button>
+          <Link
+            to="/login?mode=signup"
+            className="inline-block bg-green-500 hover:bg-green-400 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-colors shadow-lg"
+          >
+            Get Started Free
+          </Link>
         </div>
       </section>
     </div>
