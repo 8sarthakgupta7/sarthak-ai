@@ -13,6 +13,7 @@ const routeNames = {
   "/sdg5": "Gender Equality",
   "/sdg8": "Decent Work",
   "/sdg11": "Sustainable Cities",
+  "/login": "Login",
 };
 
 const routeColors = {

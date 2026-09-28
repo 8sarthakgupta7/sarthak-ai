@@ -92,7 +92,8 @@ function Navbar() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-2.5">
-            <button
+            <Link
+              to="/login"
               className="text-sm font-medium px-4 py-2 rounded-lg transition-all duration-150"
               style={{
                 color: "rgba(186,230,253,0.8)",
@@ -108,7 +109,7 @@ function Navbar() {
               }}
             >
               Login
-            </button>
+            </Link>
             <Link
               to="/ai-assist"
               className="text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-150 hover:scale-105"
@@ -168,7 +169,9 @@ function Navbar() {
             </Link>
           ))}
           <div className="pt-3 flex gap-3">
-            <button
+            <Link
+              to="/login"
+              onClick={() => setMenuOpen(false)}
               className="flex-1 text-center py-2.5 rounded-xl text-sm font-medium text-white"
               style={{
                 background: "rgba(255,255,255,0.08)",
@@ -176,7 +179,7 @@ function Navbar() {
               }}
             >
               Login
-            </button>
+            </Link>
             <Link
               to="/ai-assist"
               onClick={() => setMenuOpen(false)}
@@ -196,4 +199,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
