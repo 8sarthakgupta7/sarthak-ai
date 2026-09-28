@@ -12,6 +12,7 @@ import SDG4 from "./pages/sdg4/SDG4";
 import SDG5 from "./pages/sdg5/SDG5";
 import SDG8 from "./pages/sdg8/SDG8";
 import Breadcrumb from "./components/common/Breadcrumb";
+import SDG11 from "./pages/sdg11/SDG11";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -40,6 +41,7 @@ function App() {
             <Route path="/sdg4" element={<SDG4 />} />
             <Route path="/sdg5" element={<SDG5 />} />
             <Route path="/sdg8" element={<SDG8 />} />
+            <Route path="/sdg11" element={<SDG11 />} />
           </Routes>
         </main>
         <Footer />

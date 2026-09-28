@@ -3,17 +3,10 @@ import { Link } from "react-router-dom";
 
 const schemes = [
   {
-    name: "Ayushman Bharat - PMJAY",
+    name: "Ayushman Bharat PMJAY",
     type: "Health Insurance",
-    desc: "Health cover of ₹5 lakh per family per year for secondary and tertiary hospitalisation",
+    desc: "Health cover of 5 lakh per family per year for secondary and tertiary hospitalisation",
     eligibility: "Bottom 40% of Indian population based on SECC data",
-    link: "https://pmjay.gov.in",
-  },
-  {
-    name: "PM Jan Arogya Yojana",
-    type: "Free Treatment",
-    desc: "Cashless treatment at empanelled government and private hospitals",
-    eligibility: "Families listed in SECC 2011 database",
     link: "https://pmjay.gov.in",
   },
   {
@@ -27,7 +20,7 @@ const schemes = [
     name: "National Health Mission",
     type: "Primary Healthcare",
     desc: "Free primary healthcare services including medicines and diagnostics at public facilities",
-    eligibility: "All Indian citizens, especially rural and urban poor",
+    eligibility: "All Indian citizens especially rural and urban poor",
     link: "https://nhm.gov.in",
   },
   {
@@ -44,11 +37,18 @@ const schemes = [
     eligibility: "BPL patients suffering from major life threatening diseases",
     link: "https://mohfw.gov.in",
   },
+  {
+    name: "eSanjeevani Teleconsultation",
+    type: "Teleconsult",
+    desc: "Free government teleconsultation platform to consult doctors from home",
+    eligibility: "All Indian citizens",
+    link: "https://esanjeevani.mohfw.gov.in",
+  },
 ];
 
 const ngos = [
   {
-    name: "Doctors Without Borders (MSF)",
+    name: "Doctors Without Borders",
     focus: "Emergency Healthcare",
     desc: "Provides emergency medical care in crisis situations and underserved areas",
     contact: "office-del@delhi.msf.org",
@@ -75,8 +75,8 @@ const ngos = [
 
 const stats = [
   { number: "55 Cr", label: "Ayushman Bharat beneficiaries" },
-  { number: "₹5 Lakh", label: "Annual health cover per family" },
-  { number: "1.5 Lakh", label: "Health & Wellness Centres" },
+  { number: "5 Lakh", label: "Annual health cover per family" },
+  { number: "1.5 Lakh", label: "Health and Wellness Centres" },
   { number: "25,000+", label: "Empanelled hospitals" },
 ];
 
@@ -85,20 +85,20 @@ function SDG3() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <section className="bg-gradient-to-br from-green-700 via-green-600 to-teal-500 text-white py-16 px-4">
+      <section className="bg-gradient-to-br from-blue-700 via-blue-600 to-cyan-500 text-white py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <span className="bg-white/20 text-white text-sm font-bold px-3 py-1 rounded-full">
               SDG 3
             </span>
-            <span className="text-green-100 text-sm">
+            <span className="text-blue-100 text-sm">
               United Nations Sustainable Development Goal
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Good Health & Well-being 🔵
+            Good Health and Well-being
           </h1>
-          <p className="text-green-100 text-lg max-w-2xl leading-relaxed mb-8">
+          <p className="text-blue-100 text-lg max-w-2xl leading-relaxed mb-8">
             Ensure healthy lives and promote well-being for all ages. Connect
             people to affordable healthcare, NGOs and medical resources.
           </p>
@@ -108,14 +108,13 @@ function SDG3() {
                 <div className="text-2xl font-bold text-white">
                   {stat.number}
                 </div>
-                <div className="text-green-100 text-xs mt-1">{stat.label}</div>
+                <div className="text-blue-100 text-xs mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Quick Access */}
       <section className="py-10 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-blue-900 mb-6">
@@ -138,7 +137,7 @@ function SDG3() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="bg-green-50 border border-green-200 rounded-2xl p-4 text-center hover:shadow-md transition-shadow cursor-pointer"
+                className="bg-blue-50 border border-blue-200 rounded-2xl p-4 text-center hover:shadow-md transition-shadow cursor-pointer"
               >
                 <div className="text-3xl mb-2">{item.emoji}</div>
                 <h3 className="font-bold text-blue-900 text-sm">
@@ -151,7 +150,6 @@ function SDG3() {
         </div>
       </section>
 
-      {/* Tabs */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex gap-2 mb-8 bg-white rounded-2xl p-1.5 shadow-sm border border-gray-100 w-fit">
@@ -159,7 +157,7 @@ function SDG3() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2.5 rounded-xl font-medium text-sm transition-all ${activeTab === tab ? "bg-green-600 text-white shadow-md" : "text-gray-600 hover:text-green-600"}`}
+                className={`px-5 py-2.5 rounded-xl font-medium text-sm transition-all ${activeTab === tab ? "bg-blue-600 text-white shadow-md" : "text-gray-600 hover:text-blue-600"}`}
               >
                 {tab === "schemes"
                   ? "🏛️ Govt Schemes"
@@ -177,7 +175,7 @@ function SDG3() {
                   key={i}
                   className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
                 >
-                  <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+                  <span className="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">
                     {scheme.type}
                   </span>
                   <h3 className="font-bold text-blue-900 mt-3 mb-2">
@@ -198,9 +196,9 @@ function SDG3() {
                     href={scheme.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-center bg-green-600 text-white py-2.5 rounded-xl text-sm font-semibold hover:bg-green-700 transition-colors"
+                    className="block text-center bg-blue-600 text-white py-2.5 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
                   >
-                    Apply / Learn More →
+                    Apply / Learn More
                   </a>
                 </div>
               ))}
@@ -214,7 +212,7 @@ function SDG3() {
                   key={i}
                   className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
                 >
-                  <span className="bg-teal-100 text-teal-700 text-xs font-semibold px-3 py-1 rounded-full">
+                  <span className="bg-cyan-100 text-cyan-700 text-xs font-semibold px-3 py-1 rounded-full">
                     {ngo.focus}
                   </span>
                   <h3 className="font-bold text-blue-900 mt-3 mb-2">
@@ -223,9 +221,17 @@ function SDG3() {
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                     {ngo.desc}
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <span>📧</span>
-                    <span>{ngo.contact}</span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <span>📧</span>
+                      <span>{ngo.contact}</span>
+                    </div>
+                    <a
+                      href={"mailto:" + ngo.contact}
+                      className="bg-blue-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-blue-800 transition-colors"
+                    >
+                      Contact
+                    </a>
                   </div>
                 </div>
               ))}
@@ -243,7 +249,7 @@ function SDG3() {
                   action: "Book Free Consultation",
                 },
                 {
-                  emoji: "📞",
+                  emoji: "📱",
                   title: "Arogya Setu",
                   desc: "Health status tracking and telemedicine services through govt app",
                   link: "https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu",
@@ -268,7 +274,7 @@ function SDG3() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block bg-green-600 text-white py-2.5 rounded-xl text-sm font-semibold hover:bg-green-700 transition-colors"
+                    className="block bg-blue-600 text-white py-2.5 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
                   >
                     {item.action}
                   </a>

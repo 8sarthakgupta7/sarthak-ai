@@ -228,9 +228,17 @@ function SDG2() {
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                     {ngo.desc}
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <span>📧</span>
-                    <span>{ngo.contact}</span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <span>📧</span>
+                      <span>{ngo.contact}</span>
+                    </div>
+                    <a
+                      href={"mailto:" + ngo.contact}
+                      className="bg-blue-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-blue-800 transition-colors"
+                    >
+                      Contact →
+                    </a>
                   </div>
                 </div>
               ))}

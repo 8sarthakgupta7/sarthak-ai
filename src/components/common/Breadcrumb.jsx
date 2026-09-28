@@ -20,7 +20,7 @@ const routeColors = {
   "/contact": "from-blue-900 to-green-700",
   "/sdg1": "from-red-700 to-orange-500",
   "/sdg2": "from-yellow-600 to-orange-400",
-  "/sdg3": "from-green-700 to-teal-500",
+  "/sdg3": "from-blue-700 to-cyan-500",
   "/sdg4": "from-purple-700 to-indigo-500",
   "/sdg5": "from-pink-700 to-rose-500",
   "/sdg8": "from-emerald-700 to-teal-500",
