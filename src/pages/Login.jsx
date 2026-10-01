@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 
 const roles = [
   {
@@ -42,6 +43,7 @@ const roles = [
 
 function Login() {
   const [params] = useSearchParams();
+  const navigate = useNavigate();
   const [mode, setMode] = useState(
     params.get("mode") === "signup" ? "signup" : "login",
   );
@@ -50,21 +52,53 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [done, setDone] = useState(false);
 
   const isSignup = mode === "signup";
   const canSubmit = email && password && (!isSignup || name);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (canSubmit) setDone(true);
-  };
+    if (!canSubmit) return;
+    setLoading(true);
+    setError("");
 
-  const reset = () => {
-    setDone(false);
-    setName("");
-    setEmail("");
-    setPassword("");
+    if (isSignup) {
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      if (signUpError) {
+        setError(signUpError.message);
+        setLoading(false);
+        return;
+      }
+      if (data.user) {
+        await supabase.from("profiles").insert({
+          id: data.user.id,
+          name,
+          role,
+          xp: 0,
+          level: 1,
+          streak: 0,
+        });
+      }
+      setDone(true);
+    } else {
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (signInError) {
+        setError(signInError.message);
+        setLoading(false);
+        return;
+      }
+      navigate("/");
+    }
+    setLoading(false);
   };
 
   return (
@@ -113,28 +147,31 @@ function Login() {
             <div className="text-center py-10">
               <div className="text-6xl mb-4">🎉</div>
               <h2 className="text-2xl font-bold text-blue-900 mb-2">
-                {isSignup ? "Account Created!" : "Welcome Back!"}
+                Account Created!
               </h2>
               <p className="text-gray-600 text-sm mb-2">
-                You are signed in as a{" "}
+                Welcome to SarthakAI as a{" "}
                 <strong>{roles.find((r) => r.id === role)?.label}</strong>.
               </p>
               <p className="text-xs text-gray-400 mb-8">
-                Demo mode: real authentication will be added with Supabase.
+                Check your email to confirm your account, then login.
               </p>
               <div className="flex flex-col gap-3 max-w-xs mx-auto">
-                <Link
-                  to="/"
+                <button
+                  onClick={() => {
+                    setMode("login");
+                    setDone(false);
+                  }}
                   className="bg-gradient-to-r from-blue-900 to-green-700 text-white py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
                 >
-                  Go to Home
-                </Link>
-                <button
-                  onClick={reset}
-                  className="border-2 border-blue-900 text-blue-900 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-colors"
-                >
-                  Back to Login
+                  Go to Login
                 </button>
+                <Link
+                  to="/"
+                  className="border-2 border-blue-900 text-blue-900 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-colors text-center"
+                >
+                  Back to Home
+                </Link>
               </div>
             </div>
           ) : (
@@ -142,13 +179,19 @@ function Login() {
               {/* Toggle */}
               <div className="flex bg-gray-100 rounded-xl p-1 mb-8">
                 <button
-                  onClick={() => setMode("login")}
+                  onClick={() => {
+                    setMode("login");
+                    setError("");
+                  }}
                   className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ${!isSignup ? "bg-white text-blue-900 shadow" : "text-gray-500"}`}
                 >
                   Login
                 </button>
                 <button
-                  onClick={() => setMode("signup")}
+                  onClick={() => {
+                    setMode("signup");
+                    setError("");
+                  }}
                   className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all ${isSignup ? "bg-white text-blue-900 shadow" : "text-gray-500"}`}
                 >
                   Sign Up
@@ -163,6 +206,12 @@ function Login() {
                   ? "Choose how you want to use SarthakAI."
                   : "Enter your details to continue."}
               </p>
+
+              {error && (
+                <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl mb-5">
+                  {error}
+                </div>
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 {isSignup && (
@@ -229,7 +278,7 @@ function Login() {
                       type={showPassword ? "text" : "password"}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter your password"
+                      placeholder="Minimum 6 characters"
                       className="w-full px-4 py-3 pr-16 rounded-xl border border-gray-200 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-sm"
                     />
                     <button
@@ -244,10 +293,14 @@ function Login() {
 
                 <button
                   type="submit"
-                  disabled={!canSubmit}
+                  disabled={!canSubmit || loading}
                   className="w-full bg-gradient-to-r from-blue-900 to-green-700 text-white py-3.5 rounded-xl font-semibold hover:opacity-90 transition-all shadow-md disabled:opacity-40 disabled:cursor-not-allowed"
                 >
-                  {isSignup ? "Create Account" : "Login"}
+                  {loading
+                    ? "⏳ Please wait..."
+                    : isSignup
+                      ? "Create Account"
+                      : "Login"}
                 </button>
               </form>
 
@@ -256,7 +309,10 @@ function Login() {
                   ? "Already have an account?"
                   : "Don't have an account?"}{" "}
                 <button
-                  onClick={() => setMode(isSignup ? "login" : "signup")}
+                  onClick={() => {
+                    setMode(isSignup ? "login" : "signup");
+                    setError("");
+                  }}
                   className="text-blue-700 font-semibold hover:underline"
                 >
                   {isSignup ? "Login" : "Sign Up"}

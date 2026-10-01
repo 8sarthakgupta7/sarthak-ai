@@ -14,6 +14,7 @@ const routeNames = {
   "/sdg8": "Decent Work",
   "/sdg11": "Sustainable Cities",
   "/login": "Login",
+  "/ngos": "NGO Directory",
 };
 
 const routeColors = {

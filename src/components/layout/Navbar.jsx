@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -12,6 +13,7 @@ const navLinks = [
 function Navbar() {
   const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   return (
     <nav
@@ -89,35 +91,47 @@ function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-2.5">
-            <Link
-              to="/login"
-              className="text-sm font-medium px-4 py-2 rounded-lg transition-all duration-150"
-              style={{
-                color: "rgba(186,230,253,0.8)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.07)";
-                e.currentTarget.style.color = "#ffffff";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "rgba(186,230,253,0.8)";
-              }}
-            >
-              Login
-            </Link>
-            <Link
-              to="/login?mode=signup"
-              className="text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-150 hover:scale-105"
-              style={{
-                background: "linear-gradient(135deg, #22c55e, #10b981)",
-                border: "1px solid rgba(74,222,128,0.4)",
-                boxShadow: "0 4px 15px rgba(34,197,94,0.3)",
-              }}
-            >
-              Get Started
-            </Link>
+            {user ? (
+              <>
+                <span className="text-sm text-blue-100/80 px-3">
+                  👤 {user.email.split("@")[0]}
+                </span>
+                <button
+                  onClick={signOut}
+                  className="text-sm font-medium px-4 py-2 rounded-lg transition-all duration-150"
+                  style={{
+                    color: "rgba(186,230,253,0.8)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="text-sm font-medium px-4 py-2 rounded-lg transition-all duration-150"
+                  style={{
+                    color: "rgba(186,230,253,0.8)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                  }}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/login?mode=signup"
+                  className="text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-150 hover:scale-105"
+                  style={{
+                    background: "linear-gradient(135deg, #22c55e, #10b981)",
+                    border: "1px solid rgba(74,222,128,0.4)",
+                    boxShadow: "0 4px 15px rgba(34,197,94,0.3)",
+                  }}
+                >
+                  Get Started 🚀
+                </Link>
+              </>
+            )}
           </div>
 
           <button
